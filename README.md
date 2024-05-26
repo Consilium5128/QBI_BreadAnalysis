@@ -1,7 +1,7 @@
 ## Quantifying Pore Distributions from Bread Samples
 
-Course Project for Quantitative Big Imaging: From Images to Statistics (ETH Zurich - Spring'24)
-Under the kind Mentorship of Dr. Anders Kaestner (PSI)
+### Course Project for Quantitative Big Imaging: From Images to Statistics (ETH Zurich - Spring'24)
+Under the kind Mentorship of **Dr. Anders Kaestner (PSI)**
 
 We have 4 bread samples - Ro1a, Ru1a, V1a, W1a. Here we try to quantify the pore distributions in these samples acquired using X-ray tomography experiments.
 
