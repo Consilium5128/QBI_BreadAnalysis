@@ -28,6 +28,7 @@ def merge_regions(labelled_image, distance_transform, distance_threshold):
                         label_pairs_to_merge.add((region.label, labelled_image[neighbor]))
                         count+=1
     
+    print("Merging")
     # Merge the regions
     for label1, label2 in label_pairs_to_merge:
         merged_image[merged_image == label2] = label1

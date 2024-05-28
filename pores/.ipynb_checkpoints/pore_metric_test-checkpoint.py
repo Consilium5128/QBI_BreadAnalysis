@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 from scipy.stats import wilcoxon, ks_2samp, f_oneway
+from scipy.spatial.distance import directed_hausdorff
 
 def create_metric_df(stats, pvals, samples, pairs):
     '''
@@ -85,3 +86,26 @@ def run_pairwise_wilcoxon_test(sample_metrics_dict, metrics_to_compare, samples,
     dfs_ks_p = [create_metric_df(ks_stats, p_vals, samples, pairs) for ks_stats, p_vals in zip(ks_stats_list, p_values_list)]
     
     return dfs_ks_p, ks_stats_list, p_values_list
+
+def dice_coefficient(image1, image2):
+    intersection = np.sum((image1 > 0) & (image2 > 0))
+    sum_of_areas = np.sum(image1 > 0) + np.sum(image2 > 0)
+    dice = 2 * intersection / sum_of_areas
+    return dice
+
+def jaccard_index(image1, image2):
+    intersection = np.sum((image1 > 0) & (image2 > 0))
+    union = np.sum((image1 > 0) | (image2 > 0))
+    jaccard = intersection / union
+    return jaccard
+
+def hausdorff_distance(image1, image2):
+    coords1 = np.argwhere(image1 > 0)
+    coords2 = np.argwhere(image2 > 0)
+    hausdorff = max(directed_hausdorff(coords1, coords2)[0], directed_hausdorff(coords2, coords1)[0])
+    return hausdorff
+
+def volume_comparison(image1, image2):
+    volume1 = np.sum(image1 > 0)
+    volume2 = np.sum(image2 > 0)
+    return volume1, volume2
