@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from scipy.stats import wilcoxon, ks_2samp, f_oneway
+from scipy.stats import wilcoxon, ks_2samp, f_oneway, entropy
 from scipy.spatial.distance import directed_hausdorff
 
 def create_metric_df(stats, pvals, samples, pairs):
