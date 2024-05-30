@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from scipy.stats import wilcoxon, ks_2samp, f_oneway, entropy
+from scipy.stats import wilcoxon, ks_2samp, f_oneway, entropy, levene
 from scipy.spatial.distance import directed_hausdorff
 
 def create_metric_df(stats, pvals, samples, pairs):
@@ -74,6 +74,39 @@ def run_pairwise_wilcoxon_test(sample_metrics_dict, metrics_to_compare, samples,
                     if m == 0:
                         pairs.append((sample1, sample2))
                     w_stat, p_value = wilcoxon(sample_metrics_dict[sample1][metric].sample(sampling_size), sample_metrics_dict[sample2][metric].sample(sampling_size))
+                    if normalize:
+                        w_stat /= sampling_size
+                    ks_stats_list_metric.append(w_stat)
+                    p_values_list_metric.append(p_value)
+                    #print(f"KS-Rank Test between {bread1} and {bread2}: KS-statistic = {w_stat:.3f}, p-value = {p_value:.4e}")
+                    #print(f'p-value after Bonferonni correction (*{sampling_size}): {p_value*3000:.3e} (0.05)\n')
+        ks_stats_list.append(ks_stats_list_metric)
+        p_values_list.append(p_values_list_metric)
+    
+    dfs_ks_p = [create_metric_df(ks_stats, p_vals, samples, pairs) for ks_stats, p_vals in zip(ks_stats_list, p_values_list)]
+    
+    return dfs_ks_p, ks_stats_list, p_values_list
+
+def run_pairwise_levene_test(sample_metrics_dict, metrics_to_compare, samples, sampling_size, normalize=False):
+    '''
+    Run pairwise KS tests
+    Return a list of dataframes with each dataframe corresponding to the given metric
+    '''
+    
+    ks_stats_list = []
+    p_values_list = []
+    pairs = []
+
+    for m, metric in enumerate(metrics_to_compare):
+        ks_stats_list_metric = []
+        p_values_list_metric = []
+
+        for i,sample1 in enumerate(samples):
+            for j,sample2 in enumerate(samples):
+                if j>i:
+                    if m == 0:
+                        pairs.append((sample1, sample2))
+                    w_stat, p_value = levene(sample_metrics_dict[sample1][metric].sample(sampling_size), sample_metrics_dict[sample2][metric].sample(sampling_size))
                     if normalize:
                         w_stat /= sampling_size
                     ks_stats_list_metric.append(w_stat)
