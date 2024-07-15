@@ -3,7 +3,7 @@
 Course Project for Quantitative Big Imaging: From Images to Statistics (ETH Zurich - Spring'24)
 Under the kind Mentorship of Dr. Anders Kaestner (PSI)
 
-Link for final presentation - [https://docs.google.com/presentation/d/1LuGCAmW3mh2WmnzDhWoAP3DT--SW3fRN5GY5CIDGR9g/edit?usp=sharing](Slides)
+Link for final presentation - [Google Slides]([Slides](https://docs.google.com/presentation/d/1LuGCAmW3mh2WmnzDhWoAP3DT--SW3fRN5GY5CIDGR9g/edit?usp=sharing))
 
 We have 4 bread samples - Ro1a, Ru1a, V1a, W1a. Here we try to quantify the pore distributions in these samples acquired using X-ray tomography experiments.
 
