@@ -7,7 +7,7 @@ Link for final presentation - [Google Slides]([Slides](https://docs.google.com/p
 
 We have 4 bread samples - Ro1a, Ru1a, V1a, W1a. Here we try to quantify the pore distributions in these samples acquired using X-ray tomography experiments.
 
-This repository is still in it's infancy (born Yeast-erday) and uses .ipynb notebooks to define the workflow, while importing some functions to save memory (and time).
+This repository is still in it's infancy and uses .ipynb notebooks to define the workflow, while importing some functions to save memory (and time).
 
 The required dependencies can be installed by creating a Conda environment using environment_bread.yml file
 
@@ -16,5 +16,5 @@ The basic preprocessing and processing pipeline is in the bread_workflow.ipynb i
 
 Some metric testing has been then carried out in bread_prelim_analysis.ipynb including further image analysis, metric analysis, clustering, and statistical tests.
 
-#### To be updated
+Further pore analysis can be found at bread_image_analysis.ipynb
 
